@@ -6,7 +6,7 @@ import router from '@/router/index'
 
 const service = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
-  timeout: 99999
+  timeout: 99999,
 })
 let acitveAxios = 0
 let timer
@@ -40,7 +40,7 @@ service.interceptors.request.use(
       'Content-Type': 'application/json',
       'x-token': userStore.token,
       'x-user-id': userStore.userInfo.ID,
-      ...config.headers
+      ...config.headers,
     }
     return config
   },
@@ -49,10 +49,10 @@ service.interceptors.request.use(
     ElMessage({
       showClose: true,
       message: error,
-      type: 'error'
+      type: 'error',
     })
     return error
-  }
+  },
 )
 
 // http response 拦截器
@@ -72,7 +72,7 @@ service.interceptors.response.use(
       ElMessage({
         showClose: true,
         message: response.data.msg || decodeURI(response.headers.msg),
-        type: 'error'
+        type: 'error',
       })
       if (response.data.data && response.data.data.reload) {
         userStore.token = ''
@@ -93,7 +93,7 @@ service.interceptors.response.use(
           dangerouslyUseHTMLString: true,
           distinguishCancelAndClose: true,
           confirmButtonText: '清理缓存',
-          cancelButtonText: '取消'
+          cancelButtonText: '取消',
         })
           .then(() => {
             const userStore = useUserStore()
@@ -110,12 +110,12 @@ service.interceptors.response.use(
           dangerouslyUseHTMLString: true,
           distinguishCancelAndClose: true,
           confirmButtonText: '我知道了',
-          cancelButtonText: '取消'
+          cancelButtonText: '取消',
         })
         break
     }
 
     return error
-  }
+  },
 )
 export default service

@@ -30,7 +30,7 @@ func (initDBService *InitDBService) writePgsqlConfig(pgsql config.Pgsql) error {
 
 func (initDBService *InitDBService) initPgsqlDB(conf request.InitDB) error {
 	dsn := conf.PgsqlEmptyDsn()
-	createSql := "CREATE DATABASE " + conf.DBName
+	createSql := "CREATE DATABASE " + conf.DBName //老版本：create database %s with owner %s
 	if err := initDBService.createDatabase(dsn, "pgx", createSql); err != nil {
 		return err
 	} // 创建数据库

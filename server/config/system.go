@@ -8,4 +8,5 @@ type System struct {
 	UseMultipoint bool   `mapstructure:"use-multipoint" json:"useMultipoint" yaml:"use-multipoint"` // 多点登录拦截
 	LimitCountIP  int    `mapstructure:"iplimit-count" json:"iplimitCount" yaml:"iplimit-count"`
 	LimitTimeIP   int    `mapstructure:"iplimit-time" json:"iplimitTime" yaml:"iplimit-time"`
+	WorkerID      int    `mapstructure:"worker-id" json:"workerid" toml:"worker-id"` // 工作中心，1-1023，不同容器，不同服务器，如果将来数据要合并，不能一样
 }
